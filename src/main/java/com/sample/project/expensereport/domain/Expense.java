@@ -1,7 +1,7 @@
 package com.sample.project.expensereport.domain;
 
 
-import java.util.Date;
+import java.time.LocalDate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,10 +9,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
-
-import org.springframework.data.annotation.CreatedDate;
 
 @Entity
 @Table(name = "expense")
@@ -22,7 +18,7 @@ public class Expense {
 	private String billType;
 	private String amount;
 	private String description;
-	private String createdDate;
+	private LocalDate createdDate;
 
 	@Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -62,11 +58,11 @@ public class Expense {
 	}
 
 	@Column(name="created_date")
-	public String getCreatedDate() {
+	public LocalDate getCreatedDate() {
 		return createdDate;
 	}
 
-	public void setCreatedDate(String createdDate) {
+	public void setCreatedDate(LocalDate createdDate) {
 		this.createdDate = createdDate;
 	}
 

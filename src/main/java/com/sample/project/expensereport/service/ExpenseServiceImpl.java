@@ -1,6 +1,7 @@
 package com.sample.project.expensereport.service;
 
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -28,7 +29,7 @@ public class ExpenseServiceImpl implements ExpenseService {
 			entity.setBillType(expense.getBillType());
 			entity.setAmount(expense.getAmount().toString());
 			SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-			entity.setCreatedDate(format.format(new Date()));
+			entity.setCreatedDate(LocalDate.now());
 			expenseRepository.save(entity);
 		}else {
 			throw new ValidationException();
@@ -39,7 +40,7 @@ public class ExpenseServiceImpl implements ExpenseService {
 	
 	public List<Expense> getData() {
 		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-		return expenseRepository.findByCreatedDate(format.format(new Date()));
+		return expenseRepository.findByCreatedDate(LocalDate.now());
 	}
 
 }
