@@ -10,6 +10,6 @@ import com.sample.project.expensereport.domain.Expense;
 
 public interface ExpenseRepository extends CrudRepository<Expense, Integer >{
 
-	@Query("SELECT sum(amount), billType, createdDate FROM Expense where created_date = ?1 group by bill_type")
+	//@Query("SELECT sum(amount) as amount, billType, createdDate FROM Expense where created_date = ?1 group by bill_type")
 	List<Expense> findByCreatedDate(LocalDate date);
 }

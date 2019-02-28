@@ -29,8 +29,8 @@ public class ExpenseController {
 	}
 	
 	@GetMapping("/today")
-	public List<Expense> getTodayReport() {
-		List<Expense> expenses = expenseService.getData();
+	public List<ExpenseDTO> getTodayReport() {
+		List<ExpenseDTO> expenses = expenseService.getData();
 		return expenses;
 	}
 }

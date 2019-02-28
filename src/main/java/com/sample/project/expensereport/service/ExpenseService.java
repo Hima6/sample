@@ -9,5 +9,5 @@ public interface ExpenseService {
 
 	public void createBill(ExpenseDTO expense);
 	
-	public List<Expense> getData();
+	public List<ExpenseDTO> getData();
 }

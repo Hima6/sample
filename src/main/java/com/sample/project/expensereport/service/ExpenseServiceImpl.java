@@ -1,8 +1,9 @@
 package com.sample.project.expensereport.service;
 
+import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
-import java.util.Date;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.validation.ValidationException;
@@ -38,9 +39,18 @@ public class ExpenseServiceImpl implements ExpenseService {
 		
 	}
 	
-	public List<Expense> getData() {
+	public List<ExpenseDTO> getData() {
+		List<ExpenseDTO> response = new ArrayList<>();
 		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-		return expenseRepository.findByCreatedDate(LocalDate.now());
+		List<Expense> expenses = expenseRepository.findByCreatedDate(LocalDate.now());
+		for(Expense e : expenses) {
+			ExpenseDTO dto = new ExpenseDTO();
+			dto.setAmount(new BigDecimal(e.getAmount()));
+			dto.setBillType(BillTypeEnum.getBillTypeDescription(e.getBillType()));
+			response.add(dto);
+			//dto.setCreatedDate(e.getCreatedDate());
+		}
+		return response;
 	}
 
 }

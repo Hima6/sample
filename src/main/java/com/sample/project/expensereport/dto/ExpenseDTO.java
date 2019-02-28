@@ -3,6 +3,9 @@ package com.sample.project.expensereport.dto;
 import java.math.BigDecimal;
 import java.sql.Date;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class ExpenseDTO {
 
 	private Integer id;
