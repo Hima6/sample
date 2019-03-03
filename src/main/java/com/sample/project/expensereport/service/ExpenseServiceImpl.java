@@ -30,7 +30,7 @@ public class ExpenseServiceImpl implements ExpenseService {
 			entity.setBillType(expense.getBillType());
 			entity.setAmount(expense.getAmount().toString());
 			SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-			entity.setCreatedDate(LocalDate.now());
+			entity.setCreatedDate(LocalDate.now()); 
 			expenseRepository.save(entity);
 		}else {
 			throw new ValidationException();
@@ -41,7 +41,6 @@ public class ExpenseServiceImpl implements ExpenseService {
 	
 	public List<ExpenseDTO> getData() {
 		List<ExpenseDTO> response = new ArrayList<>();
-		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 		List<Expense> expenses = expenseRepository.findByCreatedDate(LocalDate.now());
 		for(Expense e : expenses) {
 			ExpenseDTO dto = new ExpenseDTO();
@@ -49,6 +48,20 @@ public class ExpenseServiceImpl implements ExpenseService {
 			dto.setBillType(BillTypeEnum.getBillTypeDescription(e.getBillType()));
 			response.add(dto);
 			//dto.setCreatedDate(e.getCreatedDate());
+		}
+		return response;
+	}
+
+	@Override
+	public List<ExpenseDTO> getMonthlyData() {
+		List<ExpenseDTO> response = new ArrayList<>();
+		LocalDate todayDate = LocalDate.now();
+		List<Expense> expenses = expenseRepository.findByCreatedDateBetween(todayDate.withDayOfMonth(1),todayDate);
+		for(Expense e : expenses) {
+			ExpenseDTO dto = new ExpenseDTO();
+			dto.setAmount(new BigDecimal(e.getAmount()));
+			dto.setBillType(BillTypeEnum.getBillTypeDescription(e.getBillType()));
+			response.add(dto);
 		}
 		return response;
 	}

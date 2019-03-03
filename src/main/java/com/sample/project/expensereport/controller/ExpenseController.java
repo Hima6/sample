@@ -33,4 +33,10 @@ public class ExpenseController {
 		List<ExpenseDTO> expenses = expenseService.getData();
 		return expenses;
 	}
+	
+	@GetMapping("/monthlyReport")
+	public List<ExpenseDTO> getMonthlyReport() {
+		List<ExpenseDTO> expenses = expenseService.getMonthlyData();
+		return expenses;
+	}
 }

@@ -10,4 +10,6 @@ public interface ExpenseService {
 	public void createBill(ExpenseDTO expense);
 	
 	public List<ExpenseDTO> getData();
+
+	public List<ExpenseDTO> getMonthlyData();
 }
