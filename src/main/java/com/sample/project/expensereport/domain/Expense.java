@@ -66,5 +66,15 @@ public class Expense {
 		this.createdDate = createdDate;
 	}
 
+	public Expense() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public Expense(String amount,String billType, LocalDate createdDate) {
+		this.amount=amount;
+		this.billType=billType;
+		this.createdDate=createdDate;				
+	}
 
 }
